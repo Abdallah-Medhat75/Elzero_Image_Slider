@@ -5,6 +5,10 @@ let prevButton = document.getElementById("prev");
 let nextButton = document.getElementById("next");
 let sliderSpan = document.getElementById("indicators");
 let currentSlide = 0;
+// Setting CurrentSlide To LocalStorage Variable To Save Data
+if (window.localStorage.getItem("slider-index")) {
+    currentSlide = +window.localStorage.getItem("slider-index");
+}
 // End Global letiables
 // Start Functions
 function creatingSets() {
@@ -34,6 +38,7 @@ function nextSlide() {
         return false;
     } else {
         currentSlide++;
+        window.localStorage.setItem("slider-index", currentSlide);
     }
 }
 function prevSlide() {
@@ -46,6 +51,7 @@ function prevSlide() {
         return false;
     } else {
         currentSlide--;
+        window.localStorage.setItem("slider-index", currentSlide);
     }
     // console.log(currentSlide);
 }
@@ -81,6 +87,7 @@ Array.from(paginationNewUl.children).forEach(function (li) {
     li.addEventListener("click", bulletSlide);
     li.addEventListener("click", function () {
         currentSlide = +li.dataset.index - 1;
+        window.localStorage.setItem("slider-index", currentSlide);
     })
     li.addEventListener("click", checker);
 })
