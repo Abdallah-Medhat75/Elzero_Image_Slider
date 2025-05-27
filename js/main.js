@@ -11,6 +11,18 @@ if (window.localStorage.getItem("slider-index")) {
 }
 // End Global letiables
 // Start Functions
+setInterval(function () {
+    for (let i = 0; i < sliderImages.length; ++i) {
+        sliderImages[i].classList.remove("active");
+        paginationNewUl.children[i].classList.remove("active");
+    }
+    currentSlide++;
+    if (currentSlide === sliderImages.length) {
+        currentSlide = 0;
+    }
+    checker()
+    console.log(currentSlide);
+}, 2000);
 function creatingSets() {
     // Creating Ul And Their Stuff
     let indicUl = document.createElement("ul");
